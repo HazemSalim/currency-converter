@@ -14,7 +14,7 @@ namespace CurrencyConverterAPI.Services
             _configuration = configuration;
         }
 
-        public string CreateToken(UserLogin user)
+        public string CreateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
@@ -22,13 +22,14 @@ namespace CurrencyConverterAPI.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("Id", "1"),
-                    new Claim("Email", "email@example.com"),
+                    new Claim("Id", user.Id.ToString()),
+                    new Claim("UserName", user.Username),
+                    new Claim("Email", user.Email),
                     // Add more claims as needed
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-                Issuer = _configuration["Jwt:Issuer"], // Add this line
+                Issuer = _configuration["Jwt:Issuer"],  
                 Audience = _configuration["Jwt:Audience"]
             };
 

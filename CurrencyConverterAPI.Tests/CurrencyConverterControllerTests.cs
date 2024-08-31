@@ -15,7 +15,6 @@ namespace CurrencyConverterAPI.Tests
             // Set up a mock configuration with a 32-byte key (256 bits)
             _mockConfig = new Mock<IConfiguration>();
             _mockConfig.Setup(config => config["Jwt:Key"]).Returns("JWTAuthenticationHIGHsecuredPasswordVVVp1OH7Xzyr!");
-
         }
 
         [Fact]

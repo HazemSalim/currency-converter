@@ -6,7 +6,7 @@ namespace CurrencyConverterAPI.Services
     {
         User ValidateUser(UserLogin request);
 
-        string CreateToken(UserLogin request);
+        string CreateToken(User request);
 
         
     }

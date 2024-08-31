@@ -26,7 +26,7 @@ namespace CurrencyConverterAPI.Controllers
             if (user == null)
                 return Unauthorized();
 
-            string token =  _userService.CreateToken(request);
+            string token =  _userService.CreateToken(user);
 
             return Ok(new { Token = token });
         }
